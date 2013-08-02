@@ -7,8 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path')
-  , UserProvider = require('./userProvider-array').UserProvider;
+  , path = require('path');
 
 var app = express();
 
@@ -29,31 +28,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var userProvider = new UserProvider();
+var UserManager = require('./userManager').UserManager;
 
-userProvider.insertUser({id:1, name:'Rocky', city:'Omaha', state:'NE'});
+var userManagerService = new UserManager(app);
 
-app.get('/userManager', function(req, res) {
-	userProvider.fetchAllUsers(function(error, users) {
-		res.send(users);
-	});
-});
-
-app.get('/userManager/:id', function(req, res) {
-	userProvider.fetchUserById(req.params.id, function(error, users) {
-		res.send(users);
-	});
-});
-
-
-app.get('/', function(req, res) {
-	userProvider.fetchAllUsers(function(error, users) {
-		res.render('index.jade', {
-			title: 'User Manager',
-			users:users
-		});
-	});
-});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
