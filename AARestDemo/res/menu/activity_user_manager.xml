@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_user_add"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Add User"/>
+    
+    <item
+        android:id="@+id/menu_user_del"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Delete User"/>
+    
+    <item
+        android:id="@+id/menu_user_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Refresh Users"/>
+
+</menu>
