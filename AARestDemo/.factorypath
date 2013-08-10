@@ -1,0 +1,6 @@
+<factorypath>
+    <factorypathentry kind="WKSPJAR" id="/AARestDemo/aa_jars/android-1.6_r2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/AARestDemo/aa_jars/androidannotations-3.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/AARestDemo/aa_jars/androidannotations-api-3.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/AARestDemo/aa_jars/codemodel-2.4.1.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>

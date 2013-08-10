@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="64dip"
+    android:orientation="vertical" >
+
+	    <TextView
+	        android:id="@+id/txtTop"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="1"
+	        android:gravity="center_vertical"
+	        android:textSize="24sp" />
+	
+	    <TextView
+	        android:id="@+id/txtBottom"
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="1"
+	        android:textSize="12sp" />
+	    
+</LinearLayout>
