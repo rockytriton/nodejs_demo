@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  script(src='http://code.jquery.com/jquery-1.9.1.js')
+  script(src='/javascripts/userManager-client.js')
+  h1= title
+  table
+    thead
+      tr
+        th(class='dataColumn') ID
+        th(class='dataColumn') Name
+        th(class='dataColumn') City
+        th(class='dataColumn') State
+        th 
+    tbody
+      - var i=0
+      each user in users
+        - i++
+        tr(class=(i % 2 == 0) ? 'odd' : 'even', id=('id_' + i))
+          td #{user._id}
+          td 
+            input(value=(user.name),class='inputField')
+          td 
+            input(value=(user.city),class='inputField')
+          td 
+            input(value=(user.state),class='inputField')
+          td 
+            button(onClick=('onUpdate(' + i + ')')) Update
+            button(onClick=('onDelete(' + i + ')')) Delete
+      - i++
+      tr(class=(i % 2 == 0) ? 'odd' : 'even')
+        td 
+        td 
+          input(class='inputField',id='txtName')
+        td 
+          input(class='inputField',id='txtCity')
+        td 
+          input(class='inputField',id='txtState')
+        td 
+          button(id='btnAdd',onClick='onAdd()') Add User
