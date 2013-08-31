@@ -10,7 +10,7 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 
 import com.dreamsyssoft.aarestdemo.model.User;
 
-@Rest(rootUrl="http://192.168.1.118:3000", converters={MappingJacksonHttpMessageConverter.class})
+@Rest(rootUrl="http://10.0.0.11:3000", converters={MappingJacksonHttpMessageConverter.class})
 public interface UserManager {
 	@Get("/users")
 	List<User> fetchAllUsers();

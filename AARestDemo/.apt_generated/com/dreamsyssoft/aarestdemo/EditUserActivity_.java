@@ -71,10 +71,10 @@ public final class EditUserActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        txtName = ((TextView) hasViews.findViewById(id.txtName));
-        btnSubmit = ((Button) hasViews.findViewById(id.btnSubmit));
         txtState = ((TextView) hasViews.findViewById(id.txtState));
+        txtName = ((TextView) hasViews.findViewById(id.txtName));
         txtCity = ((TextView) hasViews.findViewById(id.txtCity));
+        btnSubmit = ((Button) hasViews.findViewById(id.btnSubmit));
         if (hasViews.findViewById(id.btnSubmit)!= null) {
             hasViews.findViewById(id.btnSubmit).setOnClickListener(new OnClickListener() {
 

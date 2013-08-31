@@ -30,7 +30,7 @@ public class UserManager_
     public UserManager_() {
         restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-        rootUrl = "http://192.168.1.118:3000";
+        rootUrl = "http://10.0.0.11:3000";
         availableHeaders = new java.util.HashMap<String, String>();
         availableCookies = new java.util.HashMap<String, String>();
     }
@@ -50,12 +50,10 @@ public class UserManager_
     }
 
     @Override
-    public void updateUser(String id, User user) {
-        java.util.HashMap<String, Object> urlVariables = new java.util.HashMap<String, Object>();
-        urlVariables.put("id", id);
+    public void insertUser(User user) {
         HttpEntity<User> requestEntity = new HttpEntity<User>(user);
         try {
-            restTemplate.exchange(rootUrl.concat("/users/{id}"), HttpMethod.POST, requestEntity, null, urlVariables);
+            restTemplate.exchange(rootUrl.concat("/users"), HttpMethod.POST, requestEntity, null);
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);
@@ -66,10 +64,12 @@ public class UserManager_
     }
 
     @Override
-    public void insertUser(User user) {
+    public void updateUser(String id, User user) {
+        java.util.HashMap<String, Object> urlVariables = new java.util.HashMap<String, Object>();
+        urlVariables.put("id", id);
         HttpEntity<User> requestEntity = new HttpEntity<User>(user);
         try {
-            restTemplate.exchange(rootUrl.concat("/users"), HttpMethod.POST, requestEntity, null);
+            restTemplate.exchange(rootUrl.concat("/users/{id}"), HttpMethod.POST, requestEntity, null, urlVariables);
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);

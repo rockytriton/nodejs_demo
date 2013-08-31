@@ -27,6 +27,7 @@ public class UserManagerActivity extends ListActivity {
 	@RestService
 	UserManager userManager;
 	
+	
 	@ViewById
 	ListView list;
 	
