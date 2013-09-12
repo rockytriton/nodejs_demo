@@ -107,12 +107,12 @@ public final class UserManagerActivity_
             return true;
         }
         int itemId_ = item.getItemId();
-        if (itemId_ == com.dreamsyssoft.aarestdemo.R.id.menu_user_del) {
-            onDeleteUser();
-            return true;
-        }
         if (itemId_ == com.dreamsyssoft.aarestdemo.R.id.menu_user_add) {
             onAddUser();
+            return true;
+        }
+        if (itemId_ == com.dreamsyssoft.aarestdemo.R.id.menu_user_del) {
+            onDeleteUser();
             return true;
         }
         if (itemId_ == com.dreamsyssoft.aarestdemo.R.id.menu_user_refresh) {
