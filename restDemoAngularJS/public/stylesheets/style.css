@@ -1,0 +1,44 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #9ea79d;
+}
+h1 {
+  margin: 0px;
+  background-color: #b3d8b3;
+  padding: 5px;
+  border-bottom: 2px solid;
+}
+a {
+  color: #00b7ff;
+}
+table,
+td,
+th {
+  border: 1px solid #106813;
+  border-collapse: collapse;
+  text-align: left;
+}
+table {
+  margin: 15px;
+}
+.dataColumn {
+  width: 200px;
+  color: #fff;
+}
+th {
+  background-color: #1e3618;
+}
+.even {
+  background-color: #e9e5df;
+}
+.odd {
+  background-color: #fff;
+}
+.inputField {
+  width: 200px;
+}
+#btnAdd {
+  width: 100%;
+}

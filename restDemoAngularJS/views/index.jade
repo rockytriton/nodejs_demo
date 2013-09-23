@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js')
+  script(src='http://code.angularjs.org/1.2.0-rc.2/angular-route.min.js')
+  script(src='http://code.jquery.com/jquery-1.9.1.js')
+  script(src='/javascripts/userManager-client.js')
+  h1= title
+  table(ng-app="userManagerApp")
+    thead
+      tr
+        th(class='dataColumn') ID
+        th(class='dataColumn') Name
+        th(class='dataColumn') City
+        th(class='dataColumn') State
+        th 
+    tbody(ng-controller="userManagerController")
+      - var i=0
+      each user in users
+        tr(class=(i % 2 == 0) ? 'odd' : 'even', id=('id_' + i))
+          td #{user._id}
+          td 
+            input(value=(user.name),class='inputField')
+          td 
+            input(value=(user.city),class='inputField')
+          td 
+            input(value=(user.state),class='inputField')
+          td 
+            button(onClick=('onUpdate(' + i + ')')) Update
+            button(ng-click=('deleteUser(' + i + ')')) Delete
+        - i++
+      - i++
+      tr(class=(i % 2 == 0) ? 'odd' : 'even',ng-model="user")
+        td 
+        td 
+          input(class='inputField',ng-model="user.name")
+        td 
+          input(class='inputField',ng-model="user.city")
+        td 
+          input(class='inputField',ng-model="user.state")
+        td 
+          button(id='btnAdd',ng-click="insertUser(user)") Add User
