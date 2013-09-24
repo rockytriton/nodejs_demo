@@ -1,7 +1,6 @@
 var app = angular.module('userManagerApp', ['ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
-
     $routeProvider.when('/', {
         controller: 'userManagerController',
         templateUrl: '/'
@@ -10,30 +9,27 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 angular.module('userManagerApp').factory('dataFactory', ['$http', function($http) {
-
     var urlBase = '/users';
     var dataFactory = {};
 
     dataFactory.getUsers = function () {
-        return $http.get(urlBase);
+        return $http.get('/users');
     };
 
     dataFactory.getUser = function (id) {
-        return $http.get(urlBase + '/' + id);
+        return $http.get('/users/' + id);
     };
 
     dataFactory.insertUser = function (user) {
-      console.log('inserting... ' + user["name"])
-      console.log(user);
-        return $http.post(urlBase, user);
+        return $http.post('/users', user);
     };
 
     dataFactory.updateUser = function (user) {
-        return $http.put(urlBase + '/' + user._id, user)
+        return $http.post('/users/' + user._id, user)
     };
 
     dataFactory.deleteUser = function (id) {
-        return $http.delete(urlBase + '/' + id);
+        return $http.delete('/users/' + id);
     };
 
     return dataFactory;
@@ -43,7 +39,6 @@ angular.module('userManagerApp')
   .controller('userManagerController', [
     '$scope', 'dataFactory', function ($scope, dataFactory) {
 
-    $scope.status;
     $scope.users;
     $scope.user = {};
 
@@ -55,27 +50,42 @@ angular.module('userManagerApp')
                 $scope.users = users;
             })
             .error(function (error) {
-                $scope.status = 'Unable to load user data: ' + error.message;
+                alert('Unable to load user data: ' + error.message);
             });
     }
 
     $scope.insertUser = function (user) {
-      console.log('calling insert user: ' + $scope.user.name + ', ' + user.name);
         dataFactory.insertUser(user)
             .success(function () {
                 $scope.status = 'Inserted User! Refreshing user list.';
                 $scope.users.push(user);
+                window.location.href = "/";
+            }).
+            error(function(error) {
+                alert('Unable to insert user: ' + error);
+            });
+    };
+
+    $scope.deleteUser = function (userId) {
+        dataFactory.deleteUser(userId)
+            .success(function () {
+                $scope.status = 'Deleted User! Refreshing user list.';
+                window.location.href = "/";
             }).
             error(function(error) {
                 $scope.status = 'Unable to insert user: ' + error.message;
             });
     };
 
-    $scope.deleteUser = function (index) {
-      console.log('calling delete user: ' + $scope.users[index].id + ', ' + $scope.users[index]._id);
-        dataFactory.deleteUser($scope.users[index]._id)
+    $scope.updateUser = function (user) {
+        console.log('updating user');
+        console.log($scope.user);
+        console.log(user);
+
+        dataFactory.updateUser(user)
             .success(function () {
-                $scope.status = 'Deleted User! Refreshing user list.';
+                $scope.status = 'Updated User! Refreshing user list.';
+                window.location.href = "/";
             }).
             error(function(error) {
                 $scope.status = 'Unable to insert user: ' + error.message;

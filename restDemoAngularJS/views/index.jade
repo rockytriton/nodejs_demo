@@ -15,22 +15,18 @@ block content
         th(class='dataColumn') State
         th 
     tbody(ng-controller="userManagerController")
-      - var i=0
-      each user in users
-        tr(class=(i % 2 == 0) ? 'odd' : 'even', id=('id_' + i))
-          td #{user._id}
-          td 
-            input(value=(user.name),class='inputField')
-          td 
-            input(value=(user.city),class='inputField')
-          td 
-            input(value=(user.state),class='inputField')
-          td 
-            button(onClick=('onUpdate(' + i + ')')) Update
-            button(ng-click=('deleteUser(' + i + ')')) Delete
-        - i++
-      - i++
-      tr(class=(i % 2 == 0) ? 'odd' : 'even',ng-model="user")
+      tr(ng-repeat="user in users",ng-class-even="'even'",ng-class-odd="'odd'",id='id_')
+        td(ng-model="user._id") {{user._id}}
+        td
+          input(class='inputField',ng-model="user.name")
+        td
+          input(value='{{user.city}}',class='inputField',ng-model="user.city")
+        td
+          input(value='{{user.state}}',class='inputField',ng-model="user.state")
+        td
+          button(ng-mode="user",ng-click=('updateUser(user)')) Update
+          button(ng-click=('deleteUser(user._id)')) Delete
+      tr(class='odd')
         td 
         td 
           input(class='inputField',ng-model="user.name")
