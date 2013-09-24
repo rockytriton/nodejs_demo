@@ -57,8 +57,7 @@ angular.module('userManagerApp')
     $scope.insertUser = function (user) {
         dataFactory.insertUser(user)
             .success(function () {
-                $scope.status = 'Inserted User! Refreshing user list.';
-                $scope.users.push(user);
+                //$scope.users.push(user);
                 window.location.href = "/";
             }).
             error(function(error) {
@@ -69,72 +68,20 @@ angular.module('userManagerApp')
     $scope.deleteUser = function (userId) {
         dataFactory.deleteUser(userId)
             .success(function () {
-                $scope.status = 'Deleted User! Refreshing user list.';
                 window.location.href = "/";
             }).
             error(function(error) {
-                $scope.status = 'Unable to insert user: ' + error.message;
+                alert('Unable to delete user: ' + error);
             });
     };
 
     $scope.updateUser = function (user) {
-        console.log('updating user');
-        console.log($scope.user);
-        console.log(user);
-
         dataFactory.updateUser(user)
             .success(function () {
-                $scope.status = 'Updated User! Refreshing user list.';
                 window.location.href = "/";
             }).
             error(function(error) {
-                $scope.status = 'Unable to insert user: ' + error.message;
+                alert('Unable to update user: ' + error);
             });
     };
 }]);
-
-
-function onDelete(id) {
-  sel = '#id_' + id;
-  userId = $(sel).find('td:eq(0)').text();
-
-  $.ajax({url:'/users/' + userId,type:'DELETE'}).done(function() {
-    window.location.href = "/";
-  });
-}
-
-function onUpdate(id) {
-  sel = '#id_' + id;
-  user = {};
-  user._id = $(sel).find('td:eq(0)').text();
-  user.name = $(sel).find('td:eq(1) input').val();
-  user.city = $(sel).find('td:eq(2) input').val();
-  user.state = $(sel).find('td:eq(3) input').val();
-
-  request = $.ajax({url:'/users/' + user._id,type:'POST', data:user});
-
-  request.done(function() {
-    alert('user updated');
-    window.location.href = "/";
-  });
-
-  request.fail(function(jqXHR, textStatus) {
-    alert( "Request failed: " + textStatus );
-  });
-}
-
-function onAdd() {
-  user = {};
-  user.name = $('#txtName').val();
-  user.city = $('#txtCity').val();
-  user.state = $('#txtState').val();
-
-  request = $.ajax({url:'/users', type:'POST', data:user});
-
-  request.done(function(msg) {
-    window.location.href = "/";
-  });
-  request.fail(function(jqXHR, textStatus) {
-    alert( "Request failed: " + textStatus );
-  });
-}
