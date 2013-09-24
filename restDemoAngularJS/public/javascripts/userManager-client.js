@@ -9,7 +9,6 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 angular.module('userManagerApp').factory('dataFactory', ['$http', function($http) {
-    var urlBase = '/users';
     var dataFactory = {};
 
     dataFactory.getUsers = function () {
@@ -40,7 +39,6 @@ angular.module('userManagerApp')
     '$scope', 'dataFactory', function ($scope, dataFactory) {
 
     $scope.users;
-    $scope.user = {};
 
     getUsers();
 
@@ -57,7 +55,6 @@ angular.module('userManagerApp')
     $scope.insertUser = function (user) {
         dataFactory.insertUser(user)
             .success(function () {
-                //$scope.users.push(user);
                 window.location.href = "/";
             }).
             error(function(error) {
