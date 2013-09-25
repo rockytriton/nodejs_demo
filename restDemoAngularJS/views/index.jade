@@ -15,7 +15,7 @@ block content
         th(class='dataColumn') State
         th 
     tbody(ng-controller="userManagerController")
-      tr(ng-repeat="user in users",ng-class-even="'even'",ng-class-odd="'odd'",id='id_')
+      tr(ng-repeat="user in users",ng-class-even="'even'",ng-class-odd="'odd'")
         td(ng-model="user._id") {{user._id}}
         td
           input(class='inputField',ng-model="user.name")
@@ -24,7 +24,7 @@ block content
         td
           input(value='{{user.state}}',class='inputField',ng-model="user.state")
         td
-          button(ng-mode="user",ng-click=('updateUser(user)')) Update
+          button(ng-click=('updateUser(user)')) Update
           button(ng-click=('deleteUser(user._id)')) Delete
       tr(class='odd')
         td 
